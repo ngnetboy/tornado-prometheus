@@ -1,0 +1,12 @@
+global: {smtp_auth_password: password, smtp_auth_username: user@com.cn, smtp_from: alert
+    manager <user@com.cn>, smtp_require_tls: false, smtp_smarthost: mail.com}
+receivers:
+- email_configs: []
+  name: defaultreceiver
+route:
+  group_by: [job, instance, altername]
+  group_interval: 10m
+  group_wait: 10s
+  receiver: defaultreceiver
+  repeat_interval: 2m
+  routes: []

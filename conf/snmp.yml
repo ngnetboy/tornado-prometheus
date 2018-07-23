@@ -1,0 +1,79 @@
+default:
+  walk:
+  - 1.3.6.1.2.1.2
+  metrics:
+  - name: ifInOctets
+    oid: 1.3.6.1.2.1.2.2.1.10
+    type: counter
+    help: The total number of octets received on the interface, including framing characters - 1.3.6.1.2.1.2.2.1.10   
+    indexes:
+      - labelname: ifIndex
+        type: gauge
+    lookups:
+      - labels: [ifIndex]
+        oid: 1.3.6.1.2.1.2.2.1.2
+        labelname: ifIndex
+        type: DisplayString
+  - name: ifOutOctets
+    oid: 1.3.6.1.2.1.2.2.1.16
+    type: counter
+    help: The total number of octets transmitted out of the interface, including framing characters - 1.3.6.1.2.1.2.2.1.16   
+    indexes:
+      - labelname: ifDescr
+        type: gauge
+    lookups:
+      - labels: [ifIndex]
+        oid: 1.3.6.1.2.1.2.2.1.2
+        labelname: ifIndex
+        type: DisplayString
+
+
+arraynetworks:
+  include:
+  - default
+
+  auth:
+    community: public
+
+  walk:
+  - 1.3.6.1.4.1.7564.30.1
+  - 1.3.6.1.4.1.7564.30.4
+  metrics:
+  - name: array_cpu_utilization
+    oid: 1.3.6.1.4.1.7564.30.1 
+    type: gauge
+    help: Current percentage of CPU utilization - 1.3.6.1.4.1.7564.30.1
+  - name: array_mem_utilization
+    oid: 1.3.6.1.4.1.7564.30.4
+    type: gauge
+    help: Current percentage of memory utilization - 1.3.6.1.4.1.7564.30.4
+
+h3c:
+  include:
+  - default
+
+  walk: []
+  metrics: []
+
+hp:
+  include:
+  - default
+
+  walk: []
+  metrics: []
+
+huawei:
+  include:
+  - default
+
+  walk: []
+  metrics: []
+
+
+cisco:
+  include:
+  - default
+
+  walk: []
+  metrics: []
+
